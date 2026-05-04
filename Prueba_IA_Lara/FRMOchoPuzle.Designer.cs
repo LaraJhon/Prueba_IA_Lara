@@ -41,6 +41,10 @@
             this.BTNDesordenar = new System.Windows.Forms.Button();
             this.TMReloj = new System.Windows.Forms.Timer(this.components);
             this.LBLContador = new System.Windows.Forms.Label();
+            this.BTNEsFinal = new System.Windows.Forms.Button();
+            this.BTNAnchuraPrioritaria = new System.Windows.Forms.Button();
+            this.BTNGenerarHijos = new System.Windows.Forms.Button();
+            this.TMResolver = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // LBL0
@@ -163,7 +167,7 @@
             // 
             // TMReloj
             // 
-            this.TMReloj.Interval = 1000;
+            this.TMReloj.Interval = 50;
             this.TMReloj.Tick += new System.EventHandler(this.TMReloj_Tick);
             // 
             // LBLContador
@@ -176,11 +180,51 @@
             this.LBLContador.TabIndex = 10;
             this.LBLContador.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // BTNEsFinal
+            // 
+            this.BTNEsFinal.Location = new System.Drawing.Point(420, 258);
+            this.BTNEsFinal.Name = "BTNEsFinal";
+            this.BTNEsFinal.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.BTNEsFinal.Size = new System.Drawing.Size(137, 52);
+            this.BTNEsFinal.TabIndex = 12;
+            this.BTNEsFinal.Text = "Es Final";
+            this.BTNEsFinal.UseVisualStyleBackColor = true;
+            this.BTNEsFinal.Click += new System.EventHandler(this.BTNEsFinal_Click);
+            // 
+            // BTNAnchuraPrioritaria
+            // 
+            this.BTNAnchuraPrioritaria.Location = new System.Drawing.Point(420, 316);
+            this.BTNAnchuraPrioritaria.Name = "BTNAnchuraPrioritaria";
+            this.BTNAnchuraPrioritaria.Size = new System.Drawing.Size(137, 52);
+            this.BTNAnchuraPrioritaria.TabIndex = 13;
+            this.BTNAnchuraPrioritaria.Text = "Anchura Prioritaria";
+            this.BTNAnchuraPrioritaria.UseVisualStyleBackColor = true;
+            this.BTNAnchuraPrioritaria.Click += new System.EventHandler(this.BTNAnchuraPrioritaria_Click);
+            // 
+            // BTNGenerarHijos
+            // 
+            this.BTNGenerarHijos.Location = new System.Drawing.Point(420, 200);
+            this.BTNGenerarHijos.Name = "BTNGenerarHijos";
+            this.BTNGenerarHijos.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.BTNGenerarHijos.Size = new System.Drawing.Size(137, 52);
+            this.BTNGenerarHijos.TabIndex = 14;
+            this.BTNGenerarHijos.Text = "Generar Hijos";
+            this.BTNGenerarHijos.UseVisualStyleBackColor = true;
+            this.BTNGenerarHijos.Click += new System.EventHandler(this.BTNGenerarHijos_Click);
+            // 
+            // TMResolver
+            // 
+            this.TMResolver.Interval = 500;
+            this.TMResolver.Tick += new System.EventHandler(this.TMResolver_Tick);
+            // 
             // FRMOchoPuzle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 424);
+            this.Controls.Add(this.BTNGenerarHijos);
+            this.Controls.Add(this.BTNAnchuraPrioritaria);
+            this.Controls.Add(this.BTNEsFinal);
             this.Controls.Add(this.LBLContador);
             this.Controls.Add(this.BTNDesordenar);
             this.Controls.Add(this.LBL22);
@@ -212,5 +256,9 @@
         private System.Windows.Forms.Button BTNDesordenar;
         private System.Windows.Forms.Timer TMReloj;
         private System.Windows.Forms.Label LBLContador;
+        private System.Windows.Forms.Button BTNEsFinal;
+        private System.Windows.Forms.Button BTNAnchuraPrioritaria;
+        private System.Windows.Forms.Button BTNGenerarHijos;
+        private System.Windows.Forms.Timer TMResolver;
     }
 }
