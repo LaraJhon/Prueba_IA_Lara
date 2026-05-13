@@ -533,5 +533,66 @@ namespace Prueba_IA_Lara
             }
 
         }
+
+        private void TMProfLimitada_Tick(object sender, EventArgs e)
+        {
+            if (ContResolver < Resolver.Count)
+            {
+                LBL0.Text = Resolver[ContResolver].tablero[0, 0].ToString();
+                LBL01.Text = Resolver[ContResolver].tablero[0, 1].ToString();
+                LBL02.Text = Resolver[ContResolver].tablero[0, 2].ToString();
+                LBL10.Text = Resolver[ContResolver].tablero[1, 0].ToString();
+                LBL11.Text = Resolver[ContResolver].tablero[1, 1].ToString();
+                LBL12.Text = Resolver[ContResolver].tablero[1, 2].ToString();
+                LBL20.Text = Resolver[ContResolver].tablero[2, 0].ToString();
+                LBL21.Text = Resolver[ContResolver].tablero[2, 1].ToString();
+                LBL22.Text = Resolver[ContResolver].tablero[2, 2].ToString();
+                ContResolver++;
+            }
+            else
+            {
+                TMProfLimitada.Stop();
+
+                if (!EstadoInicial)
+                {
+                    EstadoInicial = true;
+                    Resolver.Reverse();
+                    ContResolver = 0;
+                    MessageBox.Show("Volviendo al Esado Inicial Pro");
+                    TMProfLimitada.Start();
+                }
+            }
+        }
+
+        private void BTNProfundidadLimitada_Click(object sender, EventArgs e)
+        {
+            int Limite = Convert.ToInt32(NUDLimite.Text);
+            CLEstado Inicial = new CLEstado(Convert.ToInt32(LBL0.Text),
+                                            Convert.ToInt32(LBL01.Text),
+                                            Convert.ToInt32(LBL02.Text),
+                                            Convert.ToInt32(LBL10.Text),
+                                            Convert.ToInt32(LBL11.Text),
+                                            Convert.ToInt32(LBL12.Text),
+                                            Convert.ToInt32(LBL20.Text),
+                                            Convert.ToInt32(LBL21.Text),
+                                            Convert.ToInt32(LBL22.Text)
+                                            );
+            List<CLEstado> Resultado = CLAlgoritmosDeBusqueda.ProfundidadLimitada(Inicial, Limite);
+
+            MessageBox.Show("El limite es " + Limite);
+
+            if (Resultado.Count <= Limite+1)
+            {
+
+                MessageBox.Show("Solución Encontrada en " + (Resultado.Count - 1) + " pasos");
+                TMReloj.Stop();
+                Resolver = Resultado;
+                ContResolver = 0;
+                TMProfLimitada.Start();
+
+            }
+            else
+            { MessageBox.Show("Solucion fuera de Limite"); }
+        }
     }
 }
