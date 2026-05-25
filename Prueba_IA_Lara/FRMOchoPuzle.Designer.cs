@@ -48,7 +48,10 @@
             this.TMProfLimitada = new System.Windows.Forms.Timer(this.components);
             this.BTNProfundidadLimitada = new System.Windows.Forms.Button();
             this.NUDLimite = new System.Windows.Forms.NumericUpDown();
+            this.BTNProfundidadIterativa = new System.Windows.Forms.Button();
+            this.NUDLimiteIterativo = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.NUDLimite)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDLimiteIterativo)).BeginInit();
             this.SuspendLayout();
             // 
             // LBL0
@@ -243,11 +246,30 @@
             this.NUDLimite.Size = new System.Drawing.Size(42, 20);
             this.NUDLimite.TabIndex = 16;
             // 
+            // BTNProfundidadIterativa
+            // 
+            this.BTNProfundidadIterativa.Location = new System.Drawing.Point(420, 379);
+            this.BTNProfundidadIterativa.Name = "BTNProfundidadIterativa";
+            this.BTNProfundidadIterativa.Size = new System.Drawing.Size(94, 39);
+            this.BTNProfundidadIterativa.TabIndex = 17;
+            this.BTNProfundidadIterativa.Text = "Profundidad Iterativa";
+            this.BTNProfundidadIterativa.UseVisualStyleBackColor = true;
+            this.BTNProfundidadIterativa.Click += new System.EventHandler(this.BTNProfundidadIterativa_Click);
+            // 
+            // NUDLimiteIterativo
+            // 
+            this.NUDLimiteIterativo.Location = new System.Drawing.Point(515, 390);
+            this.NUDLimiteIterativo.Name = "NUDLimiteIterativo";
+            this.NUDLimiteIterativo.Size = new System.Drawing.Size(42, 20);
+            this.NUDLimiteIterativo.TabIndex = 18;
+            // 
             // FRMOchoPuzle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 424);
+            this.Controls.Add(this.NUDLimiteIterativo);
+            this.Controls.Add(this.BTNProfundidadIterativa);
             this.Controls.Add(this.NUDLimite);
             this.Controls.Add(this.BTNProfundidadLimitada);
             this.Controls.Add(this.BTNGenerarHijos);
@@ -267,6 +289,7 @@
             this.Name = "FRMOchoPuzle";
             this.Text = "FRMOchoPuzle";
             ((System.ComponentModel.ISupportInitialize)(this.NUDLimite)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDLimiteIterativo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -292,5 +315,7 @@
         private System.Windows.Forms.Timer TMProfLimitada;
         private System.Windows.Forms.Button BTNProfundidadLimitada;
         private System.Windows.Forms.NumericUpDown NUDLimite;
+        private System.Windows.Forms.Button BTNProfundidadIterativa;
+        private System.Windows.Forms.NumericUpDown NUDLimiteIterativo;
     }
 }

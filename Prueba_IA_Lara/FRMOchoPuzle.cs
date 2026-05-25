@@ -581,7 +581,38 @@ namespace Prueba_IA_Lara
 
             MessageBox.Show("El limite es " + Limite);
 
-            if (Resultado.Count <= Limite+1)
+            if (Resultado.Count - 1 <= Limite)
+            {
+
+                MessageBox.Show("Solución Encontrada en " + (Resultado.Count - 1) + " pasos");
+                TMReloj.Stop();
+                Resolver = Resultado;
+                ContResolver = 0;
+                TMProfLimitada.Start();
+
+            }
+            else
+            { MessageBox.Show("Solucion fuera de Limite"); }
+        }
+
+        private void BTNProfundidadIterativa_Click(object sender, EventArgs e)
+        {
+            int Limite = Convert.ToInt32(NUDLimiteIterativo.Text);
+            CLEstado Inicial = new CLEstado(Convert.ToInt32(LBL0.Text),
+                                            Convert.ToInt32(LBL01.Text),
+                                            Convert.ToInt32(LBL02.Text),
+                                            Convert.ToInt32(LBL10.Text),
+                                            Convert.ToInt32(LBL11.Text),
+                                            Convert.ToInt32(LBL12.Text),
+                                            Convert.ToInt32(LBL20.Text),
+                                            Convert.ToInt32(LBL21.Text),
+                                            Convert.ToInt32(LBL22.Text)
+                                            );
+            List<CLEstado> Resultado = CLAlgoritmosDeBusqueda.ProfundidadIterativa(Inicial, Limite);
+
+            MessageBox.Show("El limite es " + Limite + " y el resultado es"+ Resultado.Count);
+
+            if ((Resultado.Count - 1 <= Limite) && (Resultado.Count != 0))
             {
 
                 MessageBox.Show("Solución Encontrada en " + (Resultado.Count - 1) + " pasos");

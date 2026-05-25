@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Prueba_IA_Lara
 {
@@ -99,8 +100,67 @@ namespace Prueba_IA_Lara
                     foreach (CLEstado a in Hijos)
                         Abiertos.Add(a);
                 }
-                Actual = Abiertos[Abiertos.Count - 1];
+                if (Abiertos.Count>0)
+                {
+                    Actual = Abiertos[Abiertos.Count - 1];
+                }
+                
             }
+            if (Actual.EsFinal())
+            {
+                Solucion.Add(Actual);
+                while (Actual.padre != null)
+                {
+                    Solucion.Add(Actual.padre);
+                    Actual = Actual.padre;
+                }
+            }
+            Solucion.Reverse();  
+            return Solucion;
+        }
+
+        public static List<CLEstado> ProfundidadIterativa(CLEstado Inicial, int Limite)
+        {
+            //Definición de variables
+            List<CLEstado> Solucion = new List<CLEstado>();
+            List<CLEstado> Abiertos = new List<CLEstado>();
+            List<CLEstado> Cerrados = new List<CLEstado>();
+            List<CLEstado> Hijos = new List<CLEstado>();
+            CLEstado Actual = new CLEstado();
+            int profundidad = 1;
+            //Algoritmo
+
+            while (!Actual.EsFinal() && profundidad < Limite)
+            {
+                Abiertos.Add(Inicial);
+                Actual = Abiertos[Abiertos.Count - 1];
+
+                while (!Actual.EsFinal() && Abiertos.Count > 0)
+                {
+                    Cerrados.Add(Actual);
+                    Abiertos.RemoveAt(Abiertos.Count - 1);
+                    if (Actual.nivel <= profundidad)
+                    {
+                        MessageBox.Show("entro y esta con profundidad " + profundidad);
+                        Hijos = Actual.GenerarHijos();
+                        Hijos = TratarRepetidosProfundidad(Hijos, Abiertos, Cerrados);
+                        foreach (CLEstado a in Hijos)
+                            Abiertos.Add(a);
+                    }
+                    if (Abiertos.Count > 0)
+                    {
+                        Actual = Abiertos[Abiertos.Count - 1];
+                    }
+                }
+
+                MessageBox.Show("entro y esta con profundidad " + profundidad);
+                profundidad++;
+                Solucion.Clear();
+                Abiertos.Clear();
+                Cerrados.Clear();
+                Hijos.Clear();
+            }
+
             if (Actual.EsFinal())
             {
                 Solucion.Add(Actual);
@@ -113,7 +173,6 @@ namespace Prueba_IA_Lara
             Solucion.Reverse();
             return Solucion;
         }
-
         private static List<CLEstado> TratarRepetidosProfundidad(List<CLEstado> hijos, List<CLEstado> abiertos, List<CLEstado> cerrados)
         {
             List<CLEstado> HijosDepurado = new List<CLEstado>();
