@@ -425,6 +425,75 @@ namespace Prueba_IA_Lara
             }
             return true;
         }
+
+        private static readonly int[,] OBJETIVO =
+        {
+            { 1, 2, 3 },
+            { 8, 0, 4 },
+            { 7, 6, 5 }
+        };
+
+        private static readonly Dictionary<int, (int fila, int col)> POS_FINAL =
+            new Dictionary<int, (int fila, int col)>
+            {
+                    {1,(0,0)}, {2,(0,1)}, {3,(0,2)},
+                    {8,(1,0)},            {4,(1,2)},
+                    {7,(2,0)}, {6,(2,1)}, {5,(2,2)}
+            };
+
+        public int H1()
+        {
+            int h1 = 0;
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    if (_tablero[i, j] != 0 && _tablero[i, j] != OBJETIVO[i, j])
+                        h1++;
+            return h1; 
+        }
+
+        public int H2()
+        {
+            int h2 = 0;
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                {
+                    int ficha = _tablero[i, j];
+                    if (ficha != 0)
+                    {
+                        var (fi, ci) = POS_FINAL[ficha];
+                        h2 += Math.Abs(i - fi) + Math.Abs(j - ci);
+                    }
+                }
+            return h2; 
+        }
+
+        public int H3()
+        {
+            int s = 0;
+            int[] camino =
+            {
+                _tablero[0,0], _tablero[0,1], _tablero[0,2],
+                _tablero[1,2], _tablero[2,2], _tablero[2,1],
+                _tablero[2,0], _tablero[1,0]
+            };
+
+            for (int i = 0; i < 8; i++)
+            {
+                int actual = camino[i];
+                int siguiente = camino[(i + 1) % 8];
+                if (actual != 0)
+                {
+                    int sucesor = actual == 8 ? 1 : actual + 1;
+                    if (siguiente != sucesor)
+                        s += 2;
+                }
+            }
+
+            if (_tablero[1, 1] != 0)
+                s++;
+
+            return H2() + (3 * s); 
+        }
         public int[,] Tablero { get => _tablero; set => _tablero = value; }
     }
 }
